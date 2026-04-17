@@ -24,6 +24,17 @@ export default function VerseSnake({ onBack }: { onBack: () => void }) {
   const speedRef = useRef(200);
   const touchStartRef = useRef<{ x: number; y: number } | null>(null);
 
+  const logoImgRef = useRef<HTMLImageElement | null>(null);
+
+  useEffect(() => {
+    const img = new Image();
+    img.src = "https://www.bitcoin.com/static/brand/verse/verse-logo.svg";
+    img.referrerPolicy = "no-referrer";
+    img.onload = () => {
+      logoImgRef.current = img;
+    };
+  }, []);
+
   const generateFoods = useCallback((currentLevel: number) => {
     const newFoods: Point[] = [];
     for (let i = 0; i < currentLevel; i++) {
@@ -69,26 +80,26 @@ export default function VerseSnake({ onBack }: { onBack: () => void }) {
 
     // Draw Foods
     foodsRef.current.forEach((f) => {
-      // 🌸 Pink gradient (pink + light red mix)
-      const gradient = ctx.createRadialGradient(
-        f.x + 10, f.y + 10, 2,
-        f.x + 10, f.y + 10, 10
-      );
-
-      gradient.addColorStop(0, "#ff4d6d");   // light red center
-      gradient.addColorStop(1, "#ff8fab");   // pink outer
-
-      ctx.beginPath();
-      ctx.arc(f.x + 10, f.y + 10, 10, 0, Math.PI * 2);
-      ctx.fillStyle = gradient;
-      ctx.fill();
-
-      // ✨ clear white V
-      ctx.fillStyle = "white";
-      ctx.font = "bold 12px Arial";
-      ctx.textAlign = "center";
-      ctx.textBaseline = "middle";
-      ctx.fillText("V", f.x + 10, f.y + 11);
+      if (logoImgRef.current) {
+        ctx.drawImage(logoImgRef.current, f.x + 2, f.y + 2, 16, 16);
+      } else {
+        // Fallback if logo hasn't loaded
+        const gradient = ctx.createRadialGradient(
+          f.x + 10, f.y + 10, 2,
+          f.x + 10, f.y + 10, 10
+        );
+        gradient.addColorStop(0, "#ff4d6d");
+        gradient.addColorStop(1, "#ff8fab");
+        ctx.beginPath();
+        ctx.arc(f.x + 10, f.y + 10, 10, 0, Math.PI * 2);
+        ctx.fillStyle = gradient;
+        ctx.fill();
+        ctx.fillStyle = "white";
+        ctx.font = "bold 12px Arial";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText("V", f.x + 10, f.y + 11);
+      }
     });
 
     // Check level complete

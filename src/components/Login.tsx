@@ -22,14 +22,21 @@ export default function Login({ onLogin }: LoginProps) {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="w-full max-w-md bg-slate-900/50 p-8 rounded-[2.5rem] border border-white/5 backdrop-blur-xl shadow-2xl"
+        className="w-full max-w-md bg-verse-surface/50 p-8 rounded-[2.5rem] border border-verse-border/30 backdrop-blur-xl shadow-2xl username-tab"
       >
-        <div className="text-center mb-8">
-          <div className="w-20 h-20 bg-game-primary/20 rounded-3xl flex items-center justify-center mx-auto mb-6 border border-game-primary/30">
-            <User className="w-10 h-10 text-game-primary" />
+        <div className="text-center mb-12">
+          {/* New Logo centered above the input field as per user request */}
+          <div className="flex justify-center mb-8">
+            <img 
+              src="https://i.ibb.co/YBRT9QkB/IMG-20260417-223333-555.jpg" 
+              alt="Verse Logo" 
+              className="h-16 w-auto verse-logo object-contain"
+              referrerPolicy="no-referrer"
+            />
           </div>
-          <h2 className="text-4xl font-black tracking-tight text-white mb-2">Welcome Back</h2>
-          <p className="text-slate-400 font-medium">Enter your nickname to enter the Zone</p>
+          <div className="w-20 h-20 bg-white/5 rounded-3xl flex items-center justify-center mx-auto mb-8 border border-white/10 ring-1 ring-white/5">
+            <User className="w-10 h-10 text-slate-400" />
+          </div>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -42,8 +49,8 @@ export default function Login({ onLogin }: LoginProps) {
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                placeholder="e.g. CryptoKing"
-                className="w-full bg-black/40 border border-white/10 rounded-2xl py-4 px-6 text-white placeholder:text-slate-600 focus:outline-none focus:border-game-primary/50 transition-colors"
+                placeholder="e.g. VerseMaster"
+                className="w-full bg-verse-bg/40 border border-verse-border/50 rounded-2xl py-4 px-6 text-white placeholder:text-slate-600 focus:outline-none focus:border-verse-blue/50 transition-colors"
                 required
               />
               <div className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-600">
@@ -60,7 +67,7 @@ export default function Login({ onLogin }: LoginProps) {
                 onChange={(e) => setSaveLogin(e.target.checked)}
                 className="sr-only"
               />
-              <div className={`w-6 h-6 rounded-lg border-2 transition-all flex items-center justify-center ${saveLogin ? 'bg-game-primary border-game-primary' : 'bg-transparent border-white/10 group-hover:border-white/20'}`}>
+              <div className={`w-6 h-6 rounded-lg border-2 transition-all flex items-center justify-center ${saveLogin ? 'bg-verse-blue border-verse-blue' : 'bg-transparent border-verse-border group-hover:border-white/20'}`}>
                 {saveLogin && (
                   <motion.div
                     initial={{ scale: 0 }}
@@ -70,17 +77,17 @@ export default function Login({ onLogin }: LoginProps) {
                 )}
               </div>
             </div>
-            <span className="text-sm font-medium text-slate-400 group-hover:text-slate-300 transition-colors">
-              Save login for next time
+            <span className="text-sm font-medium text-slate-400 group-hover:text-slate-300 transition-colors uppercase tracking-widest font-bold">
+              Remember me
             </span>
           </label>
 
           <button
             type="submit"
-            className="w-full py-4 bg-game-primary hover:bg-game-primary/90 text-white font-black rounded-2xl transition-all active:scale-[0.98] shadow-lg shadow-game-primary/20 flex items-center justify-center gap-3 text-lg"
+            className="w-full py-4 bg-verse-blue hover:bg-verse-blue/90 text-white font-black rounded-2xl transition-all active:scale-[0.98] shadow-lg shadow-verse-blue/20 flex items-center justify-center gap-3 text-lg"
           >
             <LogIn className="w-5 h-5" />
-            ENTER ZONE
+            ENTER HUB
           </button>
         </form>
       </motion.div>

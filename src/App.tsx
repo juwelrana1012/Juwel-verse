@@ -47,6 +47,11 @@ export default function App() {
     return localStorage.getItem('gameUser');
   });
 
+  // Clear programmatic suppression as per user request
+  React.useEffect(() => {
+    // Programmatic suppression removed. Logo visibility is now managed via CSS.
+  }, []);
+
   const handleLogin = (username: string, save: boolean) => {
     setUser(username);
     if (save) {
@@ -61,38 +66,41 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-50 selection:bg-game-primary/30">
+    <div className="min-h-screen bg-verse-bg text-slate-50 selection:bg-verse-blue/30">
       {/* Social Header */}
-      <header className="relative z-20 w-full border-b border-white/5 bg-slate-950/50 backdrop-blur-md">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-6 order-2 md:order-1">
+      <header className="relative z-20 w-full border-b border-white/5 bg-black py-4 md:py-6">
+        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between gap-4">
+          {/* Header logo on the left */}
+          <div className="flex items-center">
+            <img 
+              src="https://i.ibb.co/YBRT9QkB/IMG-20260417-223333-555.jpg" 
+              alt="Verse Logo" 
+              className="h-[35px] w-auto verse-logo object-contain"
+              referrerPolicy="no-referrer"
+            />
+          </div>
+
+          <div className="flex items-center gap-8">
             <a 
               href="https://x.com/VerseEcosystem" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="group flex items-center gap-2 text-xs font-bold text-slate-400 hover:text-white transition-colors uppercase tracking-widest"
+              className="group flex items-center gap-2 text-[10px] font-bold text-slate-500 hover:text-white transition-all uppercase tracking-widest"
             >
-              <Twitter className="w-4 h-4 text-blue-400 group-hover:scale-110 transition-transform" />
-              X: @VerseEcosystem
+              <Twitter className="w-3.5 h-3.5 text-blue-400 group-hover:scale-110 transition-transform" />
+              <span>@VerseEcosystem</span>
             </a>
-          </div>
+            
+            <div className="w-px h-3 bg-white/10" />
 
-          <div className="flex flex-col items-center gap-4 order-1 md:order-2">
-            <div className="hub-logo">
-              <span>V</span>
-            </div>
-            <div className="hub-title">INTERACTIVE HUB</div>
-          </div>
-
-          <div className="flex items-center gap-6 order-3">
             <a 
               href="https://t.me/GetVerse" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="group flex items-center gap-2 text-xs font-bold text-slate-400 hover:text-white transition-colors uppercase tracking-widest"
+              className="group flex items-center gap-2 text-[10px] font-bold text-slate-500 hover:text-white transition-all uppercase tracking-widest"
             >
-              <MessageCircle className="w-4 h-4 text-cyan-400 group-hover:scale-110 transition-transform" />
-              Telegram Group
+              <MessageCircle className="w-3.5 h-3.5 text-cyan-400 group-hover:scale-110 transition-transform" />
+              <span>Get Verse</span>
             </a>
           </div>
         </div>
@@ -100,9 +108,9 @@ export default function App() {
 
       {/* Background decoration */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] rounded-full bg-game-primary/10 blur-[120px]" />
-        <div className="absolute top-[20%] -right-[10%] w-[30%] h-[30%] rounded-full bg-game-secondary/10 blur-[120px]" />
-        <div className="absolute -bottom-[10%] left-[20%] w-[50%] h-[50%] rounded-full bg-game-accent/5 blur-[120px]" />
+        <div className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] rounded-full bg-verse-blue/10 blur-[120px]" />
+        <div className="absolute top-[20%] -right-[10%] w-[30%] h-[30%] rounded-full bg-verse-pink/10 blur-[120px]" />
+        <div className="absolute -bottom-[10%] left-[20%] w-[50%] h-[50%] rounded-full bg-white/5 blur-[120px]" />
       </div>
 
       <main className="relative z-10 max-w-7xl mx-auto px-6 py-12 md:py-20">
@@ -118,16 +126,30 @@ export default function App() {
               className="space-y-16"
             >
               {/* Header */}
-              <div className="text-center space-y-4">
-                <div className="flex flex-col items-center gap-4 mb-4">
+              <div className="text-center space-y-6">
+                <div className="flex flex-col items-center gap-6 mb-8">
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="flex flex-col items-center gap-4"
+                  >
+                    <img 
+                      src="https://i.ibb.co/YBRT9QkB/IMG-20260417-223333-555.jpg" 
+                      alt="Verse Logo" 
+                      className="w-48 md:w-64 h-auto drop-shadow-[0_0_20px_rgba(0,133,255,0.3)] verse-logo"
+                      referrerPolicy="no-referrer"
+                    />
+                    <div className="h-px w-24 bg-gradient-to-r from-transparent via-verse-blue to-transparent opacity-50" />
+                  </motion.div>
+
                   <motion.div
                     initial={{ scale: 0.8, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     transition={{ delay: 0.2 }}
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-game-primary font-bold text-sm"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-verse-blue font-bold text-sm tracking-widest font-display"
                   >
-                    <Star className="w-4 h-4 fill-current" />
-                    LEVEL UP YOUR FUN
+                    <Star className="w-4 h-4 fill-current animate-pulse" />
+                    BEYOND THE ECOSYSTEM
                   </motion.div>
                   
                   <motion.div 
@@ -136,10 +158,10 @@ export default function App() {
                     className="flex items-center gap-4 bg-white/5 border border-white/10 px-6 py-2 rounded-2xl"
                   >
                     <div className="flex items-center gap-2">
-                      <div className="w-8 h-8 bg-game-primary/20 rounded-lg flex items-center justify-center">
-                        <User className="w-4 h-4 text-game-primary" />
+                      <div className="w-8 h-8 bg-verse-blue/20 rounded-lg flex items-center justify-center border border-verse-blue/30">
+                        <User className="w-4 h-4 text-verse-blue" />
                       </div>
-                      <span className="text-sm font-bold text-slate-300">Hello, {user}!</span>
+                      <span className="text-sm font-bold text-slate-300 font-display uppercase tracking-wider">Hello, {user}!</span>
                     </div>
                     <div className="w-px h-4 bg-white/10" />
                     <button 
@@ -151,12 +173,15 @@ export default function App() {
                   </motion.div>
                 </div>
 
-                <h1 className="text-6xl md:text-8xl font-black tracking-tighter uppercase">
-                  Verse <span className="text-transparent bg-clip-text bg-gradient-to-r from-game-primary via-game-secondary to-game-accent">Interactive Hub</span>
-                </h1>
-                <p className="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto font-medium">
-                  A curated collection of addictive mini-games designed to test your reflexes, memory, and strategy.
-                </p>
+                <div className="game-title-section text-center space-y-4">
+                  <h1 className="text-5xl md:text-7xl font-black tracking-tighter uppercase font-display text-[#00ffd5] drop-shadow-[0_0_15px_rgba(0,255,213,0.4)]">
+                    VERSE INTERACTIVE HUB
+                  </h1>
+                  <p className="text-slate-400 text-lg md:text-xl max-w-3xl mx-auto font-medium leading-relaxed">
+                    A collection of some addictive verse mini-games specially selected to test
+                    your reflexes, memory and strategy.
+                  </p>
+                </div>
               </div>
 
               {/* Game Grid */}
@@ -240,13 +265,13 @@ export default function App() {
         </AnimatePresence>
       </main>
 
-      {/* Footer */}
-      <footer className="relative z-10 py-12 text-center text-slate-600 text-sm font-medium">
-        <div className="flex items-center justify-center gap-2 mb-2">
-          <Trophy className="w-4 h-4" />
-          <span>Built for Champions</span>
+      {/* Minimal Footer */}
+      <footer className="relative z-10 py-15 bg-black border-t border-white/5">
+        <div className="max-w-7xl mx-auto px-6 flex flex-col items-center gap-4 text-center">
+          <div className="text-slate-600 text-[10px] uppercase font-bold tracking-[0.2em] space-y-1">
+            <p>&copy; 2026 Verse Game. All rights reserved.</p>
+          </div>
         </div>
-        <p>&copy; 2026 Game Zone. All rights reserved.</p>
       </footer>
     </div>
   );
