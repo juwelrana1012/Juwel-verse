@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-game-primary: #6366f1;
+  --color-game-secondary: #a855f7;
+  --color-game-accent: #f43f5e;
+}
+
+@layer base {
+  body {
+    @apply bg-slate-950 text-slate-50 font-sans antialiased;
+  }
+}
+
+@layer components {
+  .game-container {
+    @apply grid gap-[15px] p-5;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
+  .game-card {
+    @apply bg-[#1e293b] p-[15px] rounded-xl text-center text-white transition-all duration-300;
+  }
+
+  .game-card:hover {
+    @apply scale-105;
+  }
+
+  .game-btn {
+    @apply inline-block mt-[10px] px-[15px] py-2 bg-[#22c55e] text-black rounded-lg no-underline font-bold transition-colors hover:bg-[#16a34a];
+  }
+
+  /* Branded Hub Logo - Full Gradient Update */
+  .hub-logo {
+    @apply w-[140px] h-[140px] rounded-full flex items-center justify-center transition-all duration-500 hover:scale-110;
+    background: linear-gradient(135deg, #00c6ff, #7b61ff, #ff00cc);
+    box-shadow: 0 0 30px rgba(255, 0, 204, 0.6),
+                0 0 50px rgba(0, 198, 255, 0.5);
+  }
+
+  .hub-logo span {
+    @apply text-[60px] font-black leading-none select-none;
+    background: linear-gradient(135deg, #ffffff, #ffccff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hub-title {
+    @apply text-lg font-black tracking-[5px] text-slate-400 uppercase select-none;
+  }
+}
