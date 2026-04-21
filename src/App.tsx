@@ -68,41 +68,35 @@ export default function App() {
   return (
     <div className="min-h-screen bg-verse-bg text-slate-50 selection:bg-verse-blue/30">
       {/* Social Header */}
-      <header className="relative z-20 w-full border-b border-white/5 bg-black py-4 md:py-6">
-        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between gap-4">
-          {/* Header logo on the left */}
-          <div className="flex items-center">
+      <header className="relative z-20 w-full border-b border-white/5 bg-[#111] py-3 md:py-4">
+        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+          {/* Left side: Logo + Dashboard Link */}
+          <div className="flex items-center gap-6">
             <img 
               src="https://i.ibb.co/YBRT9QkB/IMG-20260417-223333-555.jpg" 
               alt="Verse Logo" 
               className="h-[35px] w-auto verse-logo object-contain"
               referrerPolicy="no-referrer"
             />
-          </div>
-
-          <div className="flex items-center gap-8">
             <a 
-              href="https://x.com/VerseEcosystem" 
+              href="http://dashboard.vgdh.io" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="group flex items-center gap-2 text-[10px] font-bold text-slate-500 hover:text-white transition-all uppercase tracking-widest"
+              className="text-[14px] text-white no-underline bg-[#222] hover:bg-[#444] px-3 py-2 rounded-[6px] transition-all duration-300 font-medium"
             >
-              <Twitter className="w-3.5 h-3.5 text-blue-400 group-hover:scale-110 transition-transform" />
-              <span>@VerseEcosystem</span>
-            </a>
-            
-            <div className="w-px h-3 bg-white/10" />
-
-            <a 
-              href="https://t.me/GetVerse" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="group flex items-center gap-2 text-[10px] font-bold text-slate-500 hover:text-white transition-all uppercase tracking-widest"
-            >
-              <MessageCircle className="w-3.5 h-3.5 text-cyan-400 group-hover:scale-110 transition-transform" />
-              <span>Get Verse</span>
+              Dashboard
             </a>
           </div>
+
+          {/* Right side: BitcoinCom Link */}
+          <a 
+            href="https://x.com/BitcoinCom" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-[14px] text-white no-underline bg-[#222] hover:bg-[#444] px-3 py-2 rounded-[6px] transition-all duration-300 font-medium font-sans"
+          >
+            @BitcoinCom
+          </a>
         </div>
       </header>
 
