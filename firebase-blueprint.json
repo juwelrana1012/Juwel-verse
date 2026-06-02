@@ -1,0 +1,39 @@
+{
+  "entities": {
+    "LearnerProgress": {
+      "title": "LearnerProgress",
+      "description": "User progress containing bookmarks, completed lessons, and quiz scores",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "The unique guest or user identifier"
+        },
+        "bookmarks": {
+          "type": "array",
+          "description": "List of article IDs bookmarked by the user"
+        },
+        "completedTopics": {
+          "type": "array",
+          "description": "List of article IDs completed by the user"
+        },
+        "scores": {
+          "type": "object",
+          "description": "Dictionary of category ids to high score numbers"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last sync timestamp"
+        }
+      },
+      "required": ["userId", "bookmarks", "completedTopics", "scores", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/learner_progress/{userId}": {
+      "schema": "LearnerProgress",
+      "description": "Stores tracking data for each guest/learner device"
+    }
+  }
+}

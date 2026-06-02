@@ -14,15 +14,15 @@
   --color-game-secondary: #db00ff;
   --color-game-accent: #f43f5e;
 
-  --color-verse-bg: #0a0a2c;
-  --color-verse-surface: #202b58;
-  --color-verse-surface-muted: #10183c;
-  --color-verse-border: #434c74;
+  --color-verse-bg: #ffffff;
+  --color-verse-surface: #f8fafc;
+  --color-verse-surface-muted: #f1f5f9;
+  --color-verse-border: #e2e8f0;
 }
 
 @layer base {
   body {
-    @apply bg-verse-bg text-slate-50 font-sans antialiased;
+    @apply bg-white text-slate-800 font-sans antialiased;
   }
 }
 
